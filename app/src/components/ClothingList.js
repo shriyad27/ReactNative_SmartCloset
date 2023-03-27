@@ -7,7 +7,7 @@ const ClothingList = ({data, onItemPress}) => {
     <FlatList
       data={data}
       renderItem={({item, index}) => (
-        <View style={index % 2 === 0 ? styles.row : null}>
+        <View style={styles.itemContainer}>
           <ClothingItem
             imageSrc={item.image}
             onPress={() => onItemPress(item)}
@@ -25,8 +25,9 @@ const styles = StyleSheet.create({
   list: {
     flexGrow: 1,
   },
-  row: {
-    flexDirection: 'row',
+  itemContainer: {
+    flex: 1,
+    margin: 5,
   },
 });
 

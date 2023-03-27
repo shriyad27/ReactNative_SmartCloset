@@ -3,7 +3,7 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 
 const ClothingDetailsScreen = ({route}) => {
   const {item} = route.params;
-
+  console.log(item);
   return (
     <View style={styles.container}>
       <Image source={{uri: item.image}} style={styles.image} />
