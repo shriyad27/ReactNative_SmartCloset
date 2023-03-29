@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
-import {View, SafeAreaView} from 'react-native';
+import { View, SafeAreaView, Text, StyleSheet } from 'react-native';
 import ClothingList from '../components/ClothingList';
 import SearchBar from '../components/SearchBar';
+import AddItemButton from '../components/AddItemButton';
+import AddItemScreen from '../screens/AddItemScreen';
+
 
 const HomeScreen = ({navigation}) => {
+  const handlePress = () => {
+    navigation.navigate('AddItemScreen')
+  };
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const clothingData = [
@@ -54,13 +61,47 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
-      <ClothingList
-        data={filteredData}
-        onItemPress={item => navigation.navigate('ClothingDetails', {item})}
-      />
+      <View>
+        <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
+        <ClothingList
+          data={filteredData}
+          onItemPress={item => navigation.navigate('ClothingDetails', {item})}
+        />
+        <View style={styles.buttonContainer}>
+          <AddItemButton title="Go to add item page" onPress={handlePress} navigation={navigation}/>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100,
+    backgroundColor: '#F5FCFF',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    width: '100%',
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    paddingVertical: 10,
+  },
+});
 
 export default HomeScreen;
