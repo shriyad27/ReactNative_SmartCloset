@@ -1,23 +1,32 @@
-//Chat GPT says that you need to npm install --save adapterjs webrtc-adapter
-
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 const Camera = () => {
-  const videoRef = useRef(null);
+  const cameraRef = useRef(null);
 
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const takePicture = async () => {
+    if (cameraRef.current) {
+      const options = { quality: 0.5, base64: true };
+      const data = await cameraRef.current.takePictureAsync(options);
+      console.log(data.uri);
+    }
+  };
 
   return (
-    <video ref={videoRef} />
+    <View style={{ flex: 1 }}>
+      <RNCamera
+        ref={cameraRef}
+        style={{ flex: 1 }}
+        type={RNCamera.Constants.Type.back}
+        captureAudio={false}
+      />
+      <TouchableOpacity onPress={takePicture}>
+        <View style={{ backgroundColor: 'white', padding: 10 }}>
+          <Text style={{ color: 'black' }}>Take Picture</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
