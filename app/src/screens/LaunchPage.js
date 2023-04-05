@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
       fontSize: 16,
-      color: '#666',
+      color: '#1A1A2D',
       marginBottom: 20,
     },
     buttonContainer: {
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
       bottom: 0,
       width: '100%',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#22223B',
       borderTopWidth: 1,
-      borderTopColor: '#ccc',
+      borderTopColor: '#F2E9E4',
       paddingVertical: 10,
     },
   });
