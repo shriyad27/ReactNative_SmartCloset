@@ -58,7 +58,7 @@ const HomeScreen = ({navigation}) => {
   const filteredData = clothingData.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-
+  // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>
       <View>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 100,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#22223B',
   },
   title: {
     fontSize: 20,
@@ -89,18 +89,19 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: '#1A1A2D',
     marginBottom: 20,
   },
   buttonContainer: {
+    position: 'absolute',
     width: '100%',
-    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#22223B',
     borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    paddingVertical: 10,
+    borderTopColor: '#F2E9E4',
+    paddingVertical: 0,
+    marginTop: 610,
   },
 });
 

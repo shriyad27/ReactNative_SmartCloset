@@ -1,47 +1,28 @@
-import React, {useState} from 'react';
-import { View, SafeAreaView, Text, StyleSheet } from 'react-native';
-import Camera from '../components/Camera';
+import React, { useRef } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
 
 
-const AddItemScreen = ({route}) => {
-    /*const {item} = route.params;
-    console.log(item);
-    return (
-      <View style={styles.container}>
-        
-        <Image source={{uri: item.image}} style={styles.image} />
-        <Text style={styles.title}>{item.name}</Text>*/
-        {/* Render other attributes here, e.g. <Text style={styles.attribute}>Size: {item.size}</Text> */}
-      /*</View>
-      
-    );*/
-    return(
-        <Camera></Camera>
-    );
-    
+const CameraComponent = () => {
+  const cameraRef = useRef(null);
+
+  const takePicture = async () => {
+    if (cameraRef.current) {
+      const options = { quality: 0.5, base64: true };
+      const data = await cameraRef.current.takePictureAsync(options);
+      console.log(data.uri);
+    }
   };
 
-  
-  
-  const styles = StyleSheet.create({
-    container: {
-        padding: 10,
-    },
-    image: {
-      width: '100%',
-      height: 300,
-      marginBottom: 10,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    attribute: {
-      fontSize: 18,
-      marginBottom: 5,
-    },
-  });
-  
-  export default AddItemScreen;
-  
+  return (
+    <View style={{ flex: 1 }}>
+     
+      <TouchableOpacity onPress={takePicture}>
+        <View style={{ backgroundColor: 'white', padding: 10 }}>
+          <Text style={{ color: 'black' }}>Take Picture</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default CameraComponent;
