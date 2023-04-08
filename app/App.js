@@ -1,38 +1,62 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
 import ClothingDetailsScreen from './src/screens/ClothingDetailsScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
 import PreviewScreen from './src/screens/PreviewScreen';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
+// use tab navigator for home and add item screens
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <Tab.Navigator>
+        <Tab.Screen
           name="Home"
-          component={HomeScreen}
-          options={{title: 'Clothing Items'}}
+          children={() => (
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{title: 'Clothing Items'}}
+              />
+              <Stack.Screen
+                name="ClothingDetails"
+                component={ClothingDetailsScreen}
+                options={{title: 'Item Details'}}
+              />
+            </Stack.Navigator>
+          )}
+          options={{
+            headerShown: false,
+          }}
         />
-        <Stack.Screen
-          name="ClothingDetails"
-          component={ClothingDetailsScreen}
-          options={{title: 'Item Details'}}
-        />
-        <Stack.Screen
+
+        <Tab.Screen
           name="AddItem"
-          component={AddItemScreen}
-          options={{title: 'Add Item'}}
+          children={() => (
+            <Stack.Navigator initialRouteName="AddItem">
+              <Stack.Screen
+                name="AddItem"
+                component={AddItemScreen}
+                options={{title: 'Add Item'}}
+              />
+              <Stack.Screen
+                name="Preview"
+                component={PreviewScreen}
+                options={{title: 'Preview'}}
+              />
+            </Stack.Navigator>
+          )}
+          options={{
+            headerShown: false,
+          }}
         />
-        <Stack.Screen
-          name="Preview"
-          component={PreviewScreen}
-          options={{title: 'Preview'}}
-        />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };

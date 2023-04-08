@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import { View, SafeAreaView, Text, StyleSheet } from 'react-native';
+import {View, SafeAreaView, Text, StyleSheet} from 'react-native';
 import ClothingList from '../components/ClothingList';
 import SearchBar from '../components/SearchBar';
 import AddItemButton from '../components/AddItemButton';
 import AddItemScreen from '../screens/AddItemScreen';
 
-
 const HomeScreen = ({navigation}) => {
   const handlePress = () => {
-    navigation.navigate('AddItemScreen')
+    navigation.navigate('AddItemScreen');
   };
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -67,9 +66,9 @@ const HomeScreen = ({navigation}) => {
           data={filteredData}
           onItemPress={item => navigation.navigate('ClothingDetails', {item})}
         />
-        <View style={styles.buttonContainer}>
+        {/* <View style={styles.buttonContainer}>
           <AddItemButton title="Go to add item page" onPress={handlePress} navigation={navigation}/>
-        </View>
+        </View> */}
       </View>
     </SafeAreaView>
   );
