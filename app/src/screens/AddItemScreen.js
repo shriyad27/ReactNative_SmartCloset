@@ -2,7 +2,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CameraScreen = ({navigation}) => {
   const cameraRef = useRef(null);
