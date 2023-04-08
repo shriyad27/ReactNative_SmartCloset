@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import ClothingDetailsScreen from './src/screens/ClothingDetailsScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
+import PreviewScreen from './src/screens/PreviewScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,11 @@ const App = () => {
           component={AddItemScreen}
           options={{title: 'Add Item'}}
         />
-
+        <Stack.Screen
+          name="Preview"
+          component={PreviewScreen}
+          options={{title: 'Preview'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
