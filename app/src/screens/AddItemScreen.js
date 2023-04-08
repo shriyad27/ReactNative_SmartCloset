@@ -1,8 +1,8 @@
 // CameraScreen.js
 import React, {useState, useRef, useEffect} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CameraScreen = ({navigation}) => {
   const cameraRef = useRef(null);
@@ -43,11 +43,25 @@ const CameraScreen = ({navigation}) => {
           isActive={true}
           photo={true}></Camera>
       )}
-      <TouchableOpacity onPress={takePicture} style={{marginBottom: 20}}>
-        <Icon name="camera-outline" size={80} color="#ffffff" />
-      </TouchableOpacity>
+      <View style={{backgroundColor: 'black'}}>
+        <TouchableOpacity
+          onPress={takePicture}
+          style={styles.captureButton}></TouchableOpacity>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  captureButton: {
+    width: 80,
+    height: 80,
+    alignSelf: 'center',
+    borderRadius: 40,
+    backgroundColor: 'white',
+    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderWidth: 2,
+  },
+});
 
 export default CameraScreen;
