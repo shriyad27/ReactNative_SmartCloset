@@ -6,6 +6,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import ClothingDetailsScreen from './src/screens/ClothingDetailsScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
 import PreviewScreen from './src/screens/PreviewScreen';
+import SelectEventScreen  from './src/screens/SelectEventScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,7 +57,30 @@ const App = () => {
             headerShown: false,
           }}
         />
+        
+        <Tab.Screen
+          name="SelectEvent"
+          children={() => (
+            <Stack.Navigator initialRouteName="SelectEvent">
+              <Stack.Screen
+                name="SelectEvent"
+                component={SelectEventScreen}
+                options={{title: 'Select Event'}}
+              />
+              <Stack.Screen
+                name="Preview"
+                component={PreviewScreen}
+                options={{title: 'Preview'}}
+              />
+            </Stack.Navigator>
+          )}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Tab.Navigator>
+        
+
     </NavigationContainer>
   );
 };
