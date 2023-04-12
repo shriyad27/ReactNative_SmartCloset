@@ -19,7 +19,7 @@ const HomeScreen = ({navigation}) => {
     {
       id: 1,
       name: 'T-Shirt',
-      image: 'https://via.placeholder.com/150/92c952',
+      image: 'https://via.placeholder.com/150/24f355',
       size: 'M',
       color: 'Green',
       brand: 'Brand A',
@@ -60,7 +60,7 @@ const HomeScreen = ({navigation}) => {
   // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.container}>
         <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
         <ClothingList
           data={filteredData}
@@ -76,10 +76,10 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 100,
-    backgroundColor: '#22223B',
+    //justifyContent: 'center',
+    //alignItems: 'center',
+    height: 1000,
+    backgroundColor: '#1A1A2D',
   },
   title: {
     fontSize: 20,
@@ -87,9 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   subtitle: {
-    fontSize: 16,
     color: '#1A1A2D',
-    marginBottom: 20,
   },
   buttonContainer: {
     position: 'absolute',

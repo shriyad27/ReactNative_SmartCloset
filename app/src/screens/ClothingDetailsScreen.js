@@ -16,6 +16,7 @@ const ClothingDetailsScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    backgroundColor: '#1A1A2D',
   },
   image: {
     width: '100%',
