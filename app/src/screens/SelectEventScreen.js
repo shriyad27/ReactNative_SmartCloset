@@ -23,7 +23,7 @@ const SelectEventScreen = ({navigation}) => {
   // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.container}>
         <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
         <ClothingList
           data={filteredData}
@@ -38,12 +38,12 @@ const SelectEventScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-//   container: {
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     height: 100,
-//     backgroundColor: '#22223B',
-//   },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 1000,
+    backgroundColor: '#22223B',
+  },
 //   title: {
 //     fontSize: 20,
 //     fontWeight: 'bold',
