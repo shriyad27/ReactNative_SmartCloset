@@ -8,6 +8,7 @@ import AddItemScreen from './src/screens/AddItemScreen';
 import PreviewScreen from './src/screens/PreviewScreen';
 import SelectEventScreen  from './src/screens/SelectEventScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
+import BluetoothScreen from './src/screens/BluetoothScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +30,23 @@ const WelcomePage = ({ navigation }) => {
 
 // use tab navigator for home and add item screens
 const App = () => {
+const [connected, setConnected] = React.useState(false);
+  const [PID, setPID] = React.useState(null);
+  const [SERVICE_UUID, setSERVICE_UUID] = React.useState(null);
+  const [CHARACTERISTIC_UUID, setCHARACTERISTIC_UUID] = React.useState(null);
+  
+  /*if (!connected) {
+    return (
+      <BluetoothScreen
+        connected={connected}
+        setConnected={setConnected}
+        PID={PID}
+        setPID={setPID}
+        setCHARACTERISTIC_UUID={setCHARACTERISTIC_UUID}
+        setSERVICE_UUID={setSERVICE_UUID}
+      />
+    );
+  }*/
   return (
     <NavigationContainer>
       
@@ -65,6 +83,9 @@ const App = () => {
               />
               <Stack.Screen
                 name="ClothingDetails"
+                PID={PID}
+                SERVICE_UUID={SERVICE_UUID}
+                CHARACTERISTIC_UUID={CHARACTERISTIC_UUID}
                 component={ClothingDetailsScreen}
                 options={{title: 'Item Details'}}
               />

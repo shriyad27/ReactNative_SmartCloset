@@ -15,7 +15,7 @@ const PreviewScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#22223B',
     justifyContent: 'center',
     alignItems: 'center',
   },

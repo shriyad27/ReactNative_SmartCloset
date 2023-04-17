@@ -76,10 +76,11 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    //justifyContent: 'center',
-    //alignItems: 'center',
-    height: 1000,
-    backgroundColor: '#1A1A2D',
+    justifyContent: 'center',
+    alignItems: 'center',
+    //height: 1000,
+    //backgroundColor: '#1A1A2D',
+    backgroundColor: '#22223B',
   },
   title: {
     fontSize: 20,
