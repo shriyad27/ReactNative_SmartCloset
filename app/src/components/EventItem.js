@@ -1,11 +1,10 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-const ClothingItem = ({imageSrc, onPress}) => {
-  console.log('imageSrc', imageSrc);
+const EventItem = ({imageSrc, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image src={{imageSrc}} style={styles.image} />
+      <Image source={{uri: imageSrc}} style={styles.image} />
     </TouchableOpacity>
   );
 };
@@ -21,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClothingItem;
+export default EventItem;

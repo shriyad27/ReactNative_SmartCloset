@@ -1,17 +1,13 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
-const ClothingDetailsScreen = ({route}) => {
+const EventDetailsScreen = ({route}) => {
   const {item} = route.params;
-  console.log('TEST', item);
+  console.log(item);
   return (
     <View style={styles.container}>
-      <Image src={item.image} style={styles.image} />
+      <Image source={{uri: item.image}} style={styles.image} />
       <Text style={styles.title}>{item.name}</Text>
-      <Text style={styles.attribute}>Size: {item.size}</Text>
-      <Text style={styles.attribute}>Color: {item.color}</Text>
-      <Text style={styles.attribute}>Brand: {item.brand}</Text>
-      <Text style={styles.attribute}>Event: {item.event}</Text>
       {/* Render other attributes here, e.g. <Text style={styles.attribute}>Size: {item.size}</Text> */}
     </View>
   );
@@ -41,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClothingDetailsScreen;
+export default EventDetailsScreen;

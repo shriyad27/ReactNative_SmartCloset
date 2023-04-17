@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
-const AddItemButton = ({ title, onPress, navigation }) => {
+const AddItemButton = ({title, onPress, navigation}) => {
   const handlePress = () => {
-    navigation.navigate('AddItem')
+    navigation.navigate('AddItem');
   };
 
   return (
     <View>
-    <TouchableOpacity style={styles.button} onPress={handlePress}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <Text style={styles.buttonText}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
