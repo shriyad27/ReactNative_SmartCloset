@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, DeviceEventEmitter} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import BleManager from 'react-native-ble-manager';
 
 const SERVICE_UUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';

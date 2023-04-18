@@ -1,16 +1,18 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const WelcomeButton = ({ title, onPress, navigation }) => {
-  const handlePress = () => {
-    navigation.navigate('Home')
+const WelcomeButton = ({title, setInitiated}) => {
+  const handlePress = async () => {
+    setInitiated(true);
+    await AsyncStorage.setItem('Welcome', 'true');
   };
 
   return (
     <View>
-    <TouchableOpacity style={styles.button} onPress={handlePress}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <Text style={styles.buttonText}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontWeight: 'bold',
     fontSize: 20,
-    
   },
 });
 

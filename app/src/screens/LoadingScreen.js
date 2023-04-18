@@ -1,20 +1,30 @@
 import React, {useState} from 'react';
-import {View, SafeAreaView, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import WelcomeButton from '../components/WelcomeButton';
-const WelcomeScreen = ({setInitiated}) => {
+
+const WelcomeScreen = ({navigation}) => {
+  const handlePress = () => {
+    navigation.navigate('WelcomeScreen');
+  };
+
   // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        {
-          <View style={styles.buttonContainer}>
-            <WelcomeButton title="Get Started" setInitiated={setInitiated} />
-          </View>
-        }
         <Image
           style={styles.logo}
           source={require('../components/Vestilogo.jpg')}
         />
+        <View style={styles.buttonContainer}>
+          <ActivityIndicator size={70} />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
   logo: {
     //width: 300,
     borderRadius: 10,
-    marginTop: -500,
+    marginTop: -700,
   },
 });
 

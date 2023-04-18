@@ -78,12 +78,12 @@ const SelectEventScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-     container: {
-       justifyContent: 'center',
-       alignItems: 'center',
-  //     height: 100,
-       backgroundColor: '#22223B',
-  //   },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    //     height: 100,
+    backgroundColor: '#22223B',
+  },
   //   title: {
   //     fontSize: 20,
   //     fontWeight: 'bold',
@@ -108,4 +108,3 @@ const styles = StyleSheet.create({
 });
 
 export default SelectEventScreen;
-
