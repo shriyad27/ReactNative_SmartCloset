@@ -5,7 +5,7 @@ const ClothingItem = ({imageSrc, onPress}) => {
   console.log('imageSrc' + imageSrc);
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={{uri: imageSrc}} style={styles.image} />
+      <Image source={{uri: `file://${imageSrc}`}} style={styles.image} />
     </TouchableOpacity>
   );
 };

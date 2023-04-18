@@ -17,6 +17,7 @@ async function getData(setData) {
         console.log(value);
       }
     }
+    setData(data);
   } catch (e) {
     console.log(e);
   }
@@ -141,9 +142,9 @@ const HomeScreen = ({navigation}) => {
     // },
   ];
 
-  const filteredData = data.filter(item =>
+  /*const filteredData = data.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  );*/
   // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>

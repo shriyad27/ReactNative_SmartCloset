@@ -29,7 +29,7 @@ const ClothingDetailsScreen = ({route}) => {
   console.log(route);
   return (
     <View style={styles.container}>
-      <Image source={{uri: item.image}} style={styles.image} />
+      <Image source={{uri: `file://${item.image}`}} style={styles.image} />
       <Text style={styles.title}>{item.name}</Text>
       {/* Render other attributes here, e.g. <Text style={styles.attribute}>Size: {item.size}</Text> */}
       <TouchableOpacity

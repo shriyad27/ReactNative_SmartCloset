@@ -11,7 +11,7 @@ async function saveImage(imageData, name) {
     const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
     await RNFS.moveFile('file://' + imageData.path, path);
 
-    const clothes = {name: name, image: path};
+    const clothes = {name: name, image: path, id: Date.now()};
     const clothesString = JSON.stringify(clothes);
     await AsyncStorage.setItem(fileName, clothesString);
 
