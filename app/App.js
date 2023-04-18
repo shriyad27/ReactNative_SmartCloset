@@ -36,7 +36,6 @@ const App = () => {
     setSetUp(true);
   };
   React.useEffect(() => {
-    AsyncStorage.clear();
     initialize();
   }, []);
 

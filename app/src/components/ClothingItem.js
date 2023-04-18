@@ -2,9 +2,10 @@ import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 const ClothingItem = ({imageSrc, onPress}) => {
+  console.log('imageSrc' + imageSrc);
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={imageSrc} style={styles.image} />
+      <Image source={{uri: imageSrc}} style={styles.image} />
     </TouchableOpacity>
   );
 };

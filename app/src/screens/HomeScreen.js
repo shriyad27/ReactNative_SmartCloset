@@ -4,11 +4,34 @@ import ClothingList from '../components/ClothingList';
 import SearchBar from '../components/SearchBar';
 import AddItemButton from '../components/AddItemButton';
 import AddItemScreen from '../screens/AddItemScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+async function getData(setData) {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    let data = [];
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i] !== 'Welcome') {
+        const value = await AsyncStorage.getItem(keys[i]);
+        data.push(JSON.parse(value));
+        console.log(value);
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 const HomeScreen = ({navigation}) => {
   const handlePress = () => {
     navigation.navigate('AddItemScreen');
   };
+
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    getData(setData);
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -118,7 +141,7 @@ const HomeScreen = ({navigation}) => {
     // },
   ];
 
-  const filteredData = clothingData.filter(item =>
+  const filteredData = data.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
   // make the button show up at the bottom of the screen
@@ -127,7 +150,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.container}>
         <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
         <ClothingList
-          data={filteredData}
+          data={data}
           onItemPress={item => navigation.navigate('ClothingDetails', {item})}
         />
         {/* <View style={styles.buttonContainer}>

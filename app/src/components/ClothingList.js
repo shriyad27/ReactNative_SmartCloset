@@ -3,6 +3,7 @@ import {FlatList, View, StyleSheet} from 'react-native';
 import ClothingItem from './ClothingItem';
 
 const ClothingList = ({data, onItemPress}) => {
+  console.log('data' + data);
   return (
     <FlatList
       data={data}

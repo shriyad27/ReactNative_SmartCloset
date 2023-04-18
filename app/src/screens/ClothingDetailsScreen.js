@@ -25,16 +25,12 @@ const ClothingDetailsScreen = ({route}) => {
   };
 
   const {item, PID, SERVICE_UUID, CHARACTERISTIC_UUID} = route.params;
-
+  console.log(item);
   console.log(route);
   return (
     <View style={styles.container}>
-      <Image source={item.image} style={styles.image} />
+      <Image source={{uri: item.image}} style={styles.image} />
       <Text style={styles.title}>{item.name}</Text>
-      <Text style={styles.attribute}>Size: {item.size}</Text>
-      <Text style={styles.attribute}>Color: {item.color}</Text>
-      <Text style={styles.attribute}>Brand: {item.brand}</Text>
-      <Text style={styles.attribute}>Event: {item.event}</Text>
       {/* Render other attributes here, e.g. <Text style={styles.attribute}>Size: {item.size}</Text> */}
       <TouchableOpacity
         style={styles.button}
