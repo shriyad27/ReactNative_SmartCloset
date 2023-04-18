@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-const ClothingItem = ({imageSrc, onPress}) => {
+const EventItem = ({imageSrc, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Image source={imageSrc} style={styles.image} />
@@ -16,9 +16,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200,
-    resizeMode: 'contain',
+    height: 150,
   },
 });
 
-export default ClothingItem;
+export default EventItem;

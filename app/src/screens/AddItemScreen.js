@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0, 0, 0, 0.2)',
     borderWidth: 2,
   },
+  container: {
+    backgroundColor: '#22223B',
+  },
 });
 
 export default CameraScreen;

@@ -1,22 +1,18 @@
 import React from 'react';
 import {FlatList, View, StyleSheet} from 'react-native';
-import ClothingItem from './ClothingItem';
+import EventItem from './EventItem';
 
-const ClothingList = ({data, onItemPress}) => {
+const EventList = ({data, onItemPress}) => {
   return (
     <FlatList
       data={data}
       renderItem={({item, index}) => (
         <View style={styles.itemContainer}>
-          <ClothingItem
-            imageSrc={item.image}
-            onPress={() => onItemPress(item)}
-          />
+          <EventItem imageSrc={item.image} onPress={() => onItemPress(item)} />
         </View>
       )}
       keyExtractor={item => item.id.toString()}
       numColumns={2}
-      scrollEnabled={true}
       style={styles.list}
     />
   );
@@ -25,12 +21,11 @@ const ClothingList = ({data, onItemPress}) => {
 const styles = StyleSheet.create({
   list: {
     flexGrow: 1,
-    marginBottom: 100,
   },
   itemContainer: {
-    flex: 0.5,
+    flex: 1,
     margin: 5,
   },
 });
 
-export default ClothingList;
+export default EventList;
