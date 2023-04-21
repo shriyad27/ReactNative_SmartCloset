@@ -56,15 +56,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '100%',
-    height: 300,
-    marginBottom: 10,
-    resizeMode: 'contain',
+    //width: '100%',
+    //height: 400,
+    //marginBottom: 10,
+    //resizeMode: 'contain',
+    //marginTop: 25,
+    
+    width: '70%',
+    height: '70%',
+    //resizeMode: 'contain',
+    borderRadius: 10,
+    borderColor: '#F2E9E4',
+    borderWidth: 5,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop: 15,
+    color: '#F2E9E4',
+    fontFamily: 'serif',
+
   },
   attribute: {
     fontSize: 18,
@@ -74,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4A4E69',
     padding: 18,
     borderRadius: 5,
-    marginVertical: 10,
+    marginVertical: 25,
     marginTop: 'auto',
     width: 230,
     minWidth: 150,
@@ -85,6 +97,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     fontWeight: 'bold',
+    fontFamily: 'serif',
     fontSize: 20,
   },
 });

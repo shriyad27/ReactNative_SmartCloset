@@ -17,14 +17,18 @@ const SearchBar = ({value, onChangeText}) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingTop: 25,
+    paddingBottom: 25,
+    color: '#F2E9E4',
   },
   input: {
-    backgroundColor: '#080830',
-    color: '#000',
+    backgroundColor: '#F2E9E4',
     borderRadius: 5,
     padding: 5,
     fontSize: 16,
+    fontFamily: 'serif',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });
 

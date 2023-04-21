@@ -30,7 +30,7 @@ const PreviewScreen = ({route}) => {
     <View style={styles.container}>
       <Image style={styles.image} source={{uri: 'file://' + imageData.path}} />
       <View style={{width: '100%', alignItems: 'center'}}>
-        <Text>Name:</Text>
+        <Text style={styles.intro}>Name:</Text>
         <TextInput
           style={styles.textinput}
           onChangeText={text => setName(text)}
@@ -42,7 +42,7 @@ const PreviewScreen = ({route}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => saveImage(imageData, name)}>
-          <Text>Save</Text>
+          <Text style={styles.saveButton}>Save</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -57,9 +57,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: '100%',
+    width: '70%',
     height: '70%',
-    resizeMode: 'contain',
+    //resizeMode: 'contain',
+    borderRadius: 10,
+    borderColor: '#F2E9E4',
+    borderWidth: 5,
+  },
+  intro:{
+    fontFamily: 'serif',
+    color: '#F2E9E4',
+    fontSize: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   textinput: {
     backgroundColor: '#4A4E69',
@@ -69,12 +79,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     borderColor: '#F2E9E4',
+    fontFamily: 'serif'
+  },
+  saveButton:{
+    fontFamily: 'serif',
+    color: '#F2E9E4',
+    fontSize: 15,
+    alignSelf: 'center',
+    textAlign: 'center',
   },
   button: {
     marginTop: 20,
     backgroundColor: '#4A4E69',
     color: '#F2E9E4',
-    width: '80%',
+    width: 100,
     height: 40,
     borderRadius: 10,
     padding: 10,

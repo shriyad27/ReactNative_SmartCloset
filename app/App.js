@@ -67,7 +67,7 @@ const App = () => {
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{title: 'Clothing Items'}}
+                options={{title: 'Clothing Items',headerShown: false}}
               />
               <Stack.Screen
                 name="ClothingDetails"
@@ -75,7 +75,7 @@ const App = () => {
                 SERVICE_UUID={SERVICE_UUID}
                 CHARACTERISTIC_UUID={CHARACTERISTIC_UUID}
                 component={ClothingDetailsScreen}
-                options={{title: 'Item Details'}}
+                options={{title: 'Item Details',headerShown: false}}
               />
             </Stack.Navigator>
           )}
@@ -96,7 +96,7 @@ const App = () => {
               <Stack.Screen
                 name="Preview"
                 component={PreviewScreen}
-                options={{title: 'Preview'}}
+                options={{title: 'Preview',headerShown: false}}
               />
             </Stack.Navigator>
           )}
@@ -112,12 +112,12 @@ const App = () => {
               <Stack.Screen
                 name="SelectEvent"
                 component={SelectEventScreen}
-                options={{title: 'Select Event'}}
+                options={{title: 'Select Event',headerShown: false}}
               />
               <Stack.Screen
                 name="Preview"
                 component={PreviewScreen}
-                options={{title: 'Preview'}}
+                options={{title: 'Preview',headerShown: false}}
               />
             </Stack.Navigator>
           )}
