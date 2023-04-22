@@ -1,6 +1,6 @@
 #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
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 import openai
 from flask import Flask, request, jsonify
 from flask_cors import CORS
