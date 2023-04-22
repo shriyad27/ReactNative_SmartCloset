@@ -34,23 +34,23 @@ const SelectEventScreen = ({navigation}) => {
     {
       id: 1,
       name: 'Formal',
-      image: 'https://via.placeholder.com/150/92c952',
+      image: require('../assets/Professional.jpg'),
     },
     {
       id: 2,
-      name: 'Casual',
-      image: 'https://via.placeholder.com/150/771796',
+      name: 'Party',
+      image: require('../assets/Party.jpg'),
     },
     {
       id: 3,
-      name: 'Sport',
-      image: 'https://via.placeholder.com/150/24f355',
+      name: 'Work Out',
+      image: require('../assets/WorkOut.jpg'),
     },
-    // {
-    //   id: 4,
-    //   name: 'Party',
-    //   image: PartyLogo,
-    // },
+    {
+      id: 4,
+      name: 'Date',
+      image: require('../assets/Date.jpg'),
+    },
   ];
 
   const filteredData = EventData.filter(item =>

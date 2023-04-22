@@ -14,7 +14,7 @@ api = Api(app)
 
 def api():
     user_data = request.form.get('user_data')
-    data = '1 Jacket, 2 Pants, 3 Sweaters, 4 Shorts, 5 Hoodies, 6 Suit, 7 T-Shirts: USER EVENT' #request.get_json()["prompt"]
+    data = '1 Jacket, 2 Pants, 3 Sweaters, 4 Shorts, 5 Hoodies, 6 Suit, 7 T-Shirts: ' + user_data #request.get_json()["prompt"]
     prompt = "Given the following clothing items and their respective number, return the numbers of the clothing items that best fit the given characteristics: " + data 
     #response = prompt
     response = openai.ChatCompletion.create(

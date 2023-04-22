@@ -1,9 +1,22 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-const EventItem = ({imageSrc, onPress}) => {
+const API = async name => {
+  const formData = new FormData();
+  formData.append('user_data', name);
+
+  const response = await fetch('http://127.0.0.1:5000/api', {
+    method: 'POST',
+    body: formData,
+    header: {
+      'Content-type': 'application/json',
+    },
+  }).then(r => console.log(r.json()));
+};
+
+const EventItem = ({imageSrc, name}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={() => API(name)} style={styles.container}>
       <Image source={imageSrc} style={styles.image} />
     </TouchableOpacity>
   );
