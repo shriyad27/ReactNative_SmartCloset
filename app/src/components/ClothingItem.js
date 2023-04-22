@@ -16,11 +16,14 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   image: {
+    //width: '100%',
+    //height: 200,
     width: '100%',
-    height: 200,
-    resizeMode: 'contain',
-    //borderWidth: 2,
-    //borderColor: '#ffffff'
+    height: 300,
+    borderRadius: 10,
+    borderColor: '#F2E9E4',
+    borderWidth: 5,
+    //resizeMode: 'contain',
   },
 });
 

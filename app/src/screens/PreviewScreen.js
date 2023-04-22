@@ -7,11 +7,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function saveImage(imageData, name) {
   try {
-    const fileName = `image-${Date.now()}.jpg`;
+    const date = Date.now()
+    const fileName = `image-${date}.jpg`;
     const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
     await RNFS.moveFile('file://' + imageData.path, path);
 
-    const clothes = {name: name, image: path, id: Date.now()};
+    const clothes = {name: name, image: path, id: date};
     const clothesString = JSON.stringify(clothes);
     await AsyncStorage.setItem(fileName, clothesString);
 

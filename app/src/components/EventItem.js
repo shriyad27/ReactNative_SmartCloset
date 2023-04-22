@@ -1,9 +1,26 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
+async function getData() {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    let data = [];
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i] !== 'Welcome') {
+        const value = await AsyncStorage.getItem(keys[i]);
+        data.push(JSON.parse(value));
+      }
+    }
+    return data
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const API = async name => {
   const formData = new FormData();
   formData.append('user_data', name);
+  formData.append('clothes', getData())
 
   const response = await fetch('http://127.0.0.1:5000/api', {
     method: 'POST',

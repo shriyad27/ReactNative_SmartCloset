@@ -165,7 +165,7 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#22223B',
-    height: 10000,
+    //height: 10000,
   },
   title: {
     fontSize: 20,
