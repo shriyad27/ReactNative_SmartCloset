@@ -4,7 +4,6 @@ import ClothingItem from './ClothingItem';
 import {TemporaryDirectoryPath} from 'react-native-fs';
 
 const ClothingList = ({data, onItemPress}) => {
-  console.log('data' + data);
   return (
     <FlatList
       data={data}

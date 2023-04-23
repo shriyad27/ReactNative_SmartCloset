@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 const ClothingItem = ({imageSrc, onPress}) => {
-  console.log('imageSrc' + imageSrc);
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <Image source={{uri: `file://${imageSrc}`}} style={styles.image} />
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 10,
     borderColor: '#F2E9E4',
-    borderWidth: 5,
+    borderWidth: 4,
     //resizeMode: 'contain',
   },
 });

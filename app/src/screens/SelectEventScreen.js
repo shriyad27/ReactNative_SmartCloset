@@ -58,12 +58,8 @@ const SelectEventScreen = ({navigation}) => {
 
   // make the button show up at the bottom of the screen
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
-        <TouchableOpacity onPress={API}>
-          <Text>Click me</Text>
-        </TouchableOpacity>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.subContainer}>
         <EventList
           data={filteredData}
           onItemPress={item => navigation.navigate('EventDetails', {item})}
@@ -81,7 +77,12 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     //alignItems: 'center',
     //     height: 100,
+    flex: 1,
     backgroundColor: '#22223B',
+  },
+  subContainer: {
+    marginTop: 25,
+    marginBottom: 25,
   },
   //   title: {
   //     fontSize: 20,

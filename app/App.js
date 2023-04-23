@@ -28,7 +28,6 @@ const App = () => {
   const initialize = async () => {
     if ((await AsyncStorage.getItem('Welcome')) !== null) {
       console.log(await AsyncStorage.getItem('Welcome'));
-      console.log('Welcome');
       setInitiated(true);
     }
     //Check if there is already a previously connected device
@@ -61,17 +60,16 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
             let iconName;
 
             if (route.name === 'Closet') {
               iconName = 'shirt-outline';
             } else if (route.name === 'Add Clothes') {
               iconName = 'camera-outline';
-            }
-            else if(route.name === 'Recommendations'){
-               iconName = 'clipboard-outline';
+            } else if (route.name === 'Recommendations') {
+              iconName = 'clipboard-outline';
             }
 
             // You can return any component that you like here!
@@ -80,15 +78,15 @@ const App = () => {
           tabBarActiveTintColor: '#F2E9E4',
           tabBarInactiveTintColor: '#4A4E69',
           tabBarStyle: {
-            backgroundColor: "#22223B",   
+            backgroundColor: '#22223B',
             paddingBottom: 5,
-            paddingTop: 5,     
+            paddingTop: 5,
             height: 55,
           },
           tabBarLabelStyle: {
             fontFamily: 'serif',
             fontSize: 10,
-          }
+          },
         })}>
         <Tab.Screen
           name="Closet"
@@ -97,7 +95,7 @@ const App = () => {
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{title: 'Clothing Items',headerShown: false}}
+                options={{title: 'Clothing Items', headerShown: false}}
               />
               <Stack.Screen
                 name="ClothingDetails"
@@ -105,7 +103,7 @@ const App = () => {
                 SERVICE_UUID={SERVICE_UUID}
                 CHARACTERISTIC_UUID={CHARACTERISTIC_UUID}
                 component={ClothingDetailsScreen}
-                options={{title: 'Item Details',headerShown: false}}
+                options={{title: 'Item Details', headerShown: false}}
               />
             </Stack.Navigator>
           )}
@@ -126,7 +124,7 @@ const App = () => {
               <Stack.Screen
                 name="Preview"
                 component={PreviewScreen}
-                options={{title: 'Preview',headerShown: false}}
+                options={{title: 'Preview', headerShown: false}}
               />
             </Stack.Navigator>
           )}
@@ -142,12 +140,12 @@ const App = () => {
               <Stack.Screen
                 name="SelectEvent"
                 component={SelectEventScreen}
-                options={{title: 'Select Event',headerShown: false}}
+                options={{title: 'Select Event', headerShown: false}}
               />
               <Stack.Screen
                 name="Preview"
                 component={PreviewScreen}
-                options={{title: 'Preview',headerShown: false}}
+                options={{title: 'Preview', headerShown: false}}
               />
             </Stack.Navigator>
           )}

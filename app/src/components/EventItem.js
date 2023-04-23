@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 async function getData() {
   try {
     const keys = await AsyncStorage.getAllKeys();
@@ -11,7 +11,13 @@ async function getData() {
         data.push(JSON.parse(value));
       }
     }
-    return data
+    //convert data to {name: 'item.name', id': 'item.id'}, ...
+    for (let i = 0; i < data.length; i++) {
+      data[i] = {name: data[i].name, id: data[i].id};
+    }
+    //convert data to string
+    data = JSON.stringify(data);
+    return data;
   } catch (e) {
     console.log(e);
   }
@@ -19,8 +25,10 @@ async function getData() {
 
 const API = async name => {
   const formData = new FormData();
+  const data = await getData();
+  console.log(data);
   formData.append('user_data', name);
-  formData.append('clothes', getData())
+  formData.append('clothes', data);
 
   const response = await fetch('http://127.0.0.1:5000/api', {
     method: 'POST',
@@ -49,7 +57,7 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 10,
     borderColor: '#F2E9E4',
-    borderWidth: 5,
+    borderWidth: 4,
   },
 });
 

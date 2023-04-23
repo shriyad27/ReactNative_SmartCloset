@@ -5,6 +5,8 @@ import SearchBar from '../components/SearchBar';
 import AddItemButton from '../components/AddItemButton';
 import AddItemScreen from '../screens/AddItemScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+//use useFocus to refresh the page
+import {useFocusEffect} from '@react-navigation/native';
 
 async function getData(setData) {
   try {
@@ -14,7 +16,6 @@ async function getData(setData) {
       if (keys[i] !== 'Welcome') {
         const value = await AsyncStorage.getItem(keys[i]);
         data.push(JSON.parse(value));
-        console.log(value);
       }
     }
     setData(data);
@@ -24,15 +25,13 @@ async function getData(setData) {
 }
 
 const HomeScreen = ({navigation}) => {
-  const handlePress = () => {
-    navigation.navigate('AddItemScreen');
-  };
+  useFocusEffect(
+    React.useCallback(() => {
+      getData(setData);
+    }, []),
+  );
 
   const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    getData(setData);
-  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -80,6 +79,66 @@ const HomeScreen = ({navigation}) => {
       price: 25.99,
       event: 'Casual',
     },
+    {
+      id: 5,
+      name: 'T-Shirt',
+      image: require('../assets/suit.jpg'),
+      size: 'M',
+      color: 'Green',
+      brand: 'Brand A',
+      price: 25.99,
+      event: 'Casual',
+    },
+    {
+      id: 6,
+      name: 'T-Shirt',
+      image: require('../assets/suit.jpg'),
+      size: 'M',
+      color: 'Green',
+      brand: 'Brand A',
+      price: 25.99,
+      event: 'Casual',
+    },
+    {
+      id: 7,
+      name: 'T-Shirt',
+      image: require('../assets/suit.jpg'),
+      size: 'M',
+      color: 'Green',
+      brand: 'Brand A',
+      price: 25.99,
+      event: 'Casual',
+    },
+    // {
+    //   id: 2,
+    //   name: 'Jeans',
+    //   image: 'https://via.placeholder.com/150/771796',
+    //   size: '32',
+    //   color: 'Blue',
+    //   brand: 'Brand B',
+    //   price: 79.99,
+    //   event: 'Formal',
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Sweater',
+    //   image: 'https://via.placeholder.com/150/24f355',
+    //   size: 'L',
+    //   color: 'Red',
+    //   brand: 'Brand C',
+    //   price: 45.99,
+    //   event: 'Casual',
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Jacket',
+    //   image: 'https://via.placeholder.com/150/d32776',
+    //   size: 'XL',
+    //   color: 'Black',
+    //   brand: 'Brand D',
+    //   price: 120.0,
+    //   event: 'Party',
+    // },
   ];
 
   /*const filteredData = data.filter(item =>
@@ -87,8 +146,8 @@ const HomeScreen = ({navigation}) => {
   );*/
   // make the button show up at the bottom of the screen
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View>
         <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
         <ClothingList
           data={data}
@@ -105,7 +164,11 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#22223B',
-    //height: 10000,
+    flex: 1,
+    // height: 10000,
+  },
+  subContainer: {
+    marginBottom: 100,
   },
   title: {
     fontSize: 20,
@@ -127,7 +190,6 @@ const styles = StyleSheet.create({
     borderTopColor: '#F2E9E4',
     paddingVertical: 0,
     marginTop: 700,
-
   },
 });
 

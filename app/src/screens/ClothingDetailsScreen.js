@@ -1,8 +1,11 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import BleManager from 'react-native-ble-manager';
+import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ClothingDetailsScreen = ({route}) => {
+  const navigation = useNavigation();
   const writeCharacteristic = async (
     peripheralId,
     serviceUUID,
@@ -23,10 +26,18 @@ const ClothingDetailsScreen = ({route}) => {
       console.error('Error writing characteristic:', error);
     }
   };
+  const deleteItem = async () => {
+    try {
+      console.log(item.id.toString());
+      await AsyncStorage.removeItem('image-' + item.id.toString() + '.jpg');
+      navigation.navigate('Home');
+      console.log('Deleted item');
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const {item, PID, SERVICE_UUID, CHARACTERISTIC_UUID} = route.params;
-  console.log(item);
-  console.log(route);
   return (
     <View style={styles.container}>
       <Image source={{uri: `file://${item.image}`}} style={styles.image} />
@@ -43,6 +54,9 @@ const ClothingDetailsScreen = ({route}) => {
           )
         }>
         <Text style={styles.buttonText}>Find</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.deleteButton} onPress={deleteItem}>
+        <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
     </View>
   );
@@ -61,7 +75,7 @@ const styles = StyleSheet.create({
     //marginBottom: 10,
     //resizeMode: 'contain',
     //marginTop: 25,
-    
+
     width: '70%',
     height: '70%',
     //resizeMode: 'contain',
@@ -76,7 +90,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     color: '#F2E9E4',
     fontFamily: 'serif',
-
   },
   attribute: {
     fontSize: 18,
@@ -84,21 +97,36 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#4A4E69',
-    padding: 18,
+    padding: 10,
     borderRadius: 10,
     marginVertical: 25,
     marginTop: 'auto',
     width: 230,
     minWidth: 150,
-    height: 75,
+    height: 50,
+    flex: 1.3,
   },
   buttonText: {
     color: '#F2E9E4',
+    width: '100%',
+    height: '100%',
     textAlign: 'center',
     textAlignVertical: 'center',
     fontWeight: 'bold',
     fontFamily: 'serif',
     fontSize: 20,
+  },
+  deleteButton: {
+    //background color pastel red
+    backgroundColor: '#E63946',
+    padding: 10,
+    borderRadius: 10,
+    marginVertical: 25,
+    marginTop: 'auto',
+    width: 230,
+    flex: 1.3,
+    minWidth: 150,
+    height: 50,
   },
 });
 

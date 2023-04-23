@@ -16,13 +16,15 @@ const WelcomeScreen = ({navigation}) => {
 
   // make the button show up at the bottom of the screen
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require('../components/Vestilogo.jpg')}
-        />
-        <View style={styles.buttonContainer}>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <View>
+          <Image
+            style={styles.logo}
+            source={require('../components/Vestilogo.jpg')}
+          />
+        </View>
+        <View>
           <ActivityIndicator size={70} />
         </View>
       </View>
@@ -34,8 +36,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 1000,
+    flex: 1,
     backgroundColor: '#1A1A2D',
+    alignItems: 'center',
+    justifyContent: 'center',
     //borderRadius: 10,
   },
   title: {
@@ -49,16 +53,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonContainer: {
-    position: 'absolute',
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 610,
   },
   logo: {
     //width: 300,
     borderRadius: 10,
-    marginTop: -700,
+    marginBottom: 100,
   },
 });
 

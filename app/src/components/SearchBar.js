@@ -8,7 +8,7 @@ const SearchBar = ({value, onChangeText}) => {
         style={styles.input}
         value={value}
         onChangeText={onChangeText}
-        placeholder="Search clothing items..."
+        placeholder="Search items..."
       />
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     color: '#F2E9E4',
   },
   input: {
-    backgroundColor: '#F2E9E4',
+    backgroundColor: '#525954',
     borderRadius: 10,
     padding: 5,
     fontSize: 16,

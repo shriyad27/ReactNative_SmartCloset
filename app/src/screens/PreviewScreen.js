@@ -4,10 +4,11 @@ import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import RNFS from 'react-native-fs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 
-async function saveImage(imageData, name) {
+async function saveImage(imageData, name, navigation) {
   try {
-    const date = Date.now()
+    const date = Date.now();
     const fileName = `image-${date}.jpg`;
     const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
     await RNFS.moveFile('file://' + imageData.path, path);
@@ -17,12 +18,14 @@ async function saveImage(imageData, name) {
     await AsyncStorage.setItem(fileName, clothesString);
 
     console.log('Saved image to', path);
+    navigation.navigate('Closet');
   } catch (e) {
     console.log(e);
   }
 }
 
 const PreviewScreen = ({route}) => {
+  const navigation = useNavigation();
   const {imageData} = route.params;
 
   const [name, setName] = React.useState('');
@@ -42,7 +45,7 @@ const PreviewScreen = ({route}) => {
       <View style={{width: '100%', alignItems: 'center'}}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => saveImage(imageData, name)}>
+          onPress={() => saveImage(imageData, name, navigation)}>
           <Text style={styles.saveButton}>Save</Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     borderColor: '#F2E9E4',
     borderWidth: 5,
   },
-  intro:{
+  intro: {
     fontFamily: 'serif',
     color: '#F2E9E4',
     fontSize: 15,
@@ -80,9 +83,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     borderColor: '#F2E9E4',
-    fontFamily: 'serif'
+    fontFamily: 'serif',
   },
-  saveButton:{
+  saveButton: {
     fontFamily: 'serif',
     color: '#F2E9E4',
     fontSize: 15,
