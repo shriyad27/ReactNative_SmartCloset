@@ -61,23 +61,34 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-      screenOptions={({ route }) => ({
+        screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
-              iconName = focused
-                ? 'information-circle'
-                : 'information-circle-outline';
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'list' : 'list-outline';
+            if (route.name === 'Closet') {
+              iconName = 'shirt-outline';
+            } else if (route.name === 'Add Clothes') {
+              iconName = 'camera-outline';
+            }
+            else if(route.name === 'Recommendations'){
+               iconName = 'clipboard-outline';
             }
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: '#F2E9E4',
+          tabBarInactiveTintColor: '#4A4E69',
+          tabBarStyle: {
+            backgroundColor: "#22223B",   
+            paddingBottom: 5,
+            paddingTop: 5,     
+            height: 55,
+          },
+          tabBarLabelStyle: {
+            fontFamily: 'serif',
+            fontSize: 10,
+          }
         })}>
         <Tab.Screen
           name="Closet"
@@ -125,7 +136,7 @@ const App = () => {
         />
 
         <Tab.Screen
-          name="Wardrobe"
+          name="Recommendations"
           children={() => (
             <Stack.Navigator initialRouteName="SelectEvent">
               <Stack.Screen

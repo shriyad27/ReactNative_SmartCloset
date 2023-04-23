@@ -131,7 +131,7 @@ const BluetoothScreen = ({
             style={{
               backgroundColor: 'blue',
               padding: 10,
-              borderRadius: 5,
+              borderRadius: 10,
               marginBottom: 5,
             }}>
             <Text>Read device</Text>
@@ -141,7 +141,7 @@ const BluetoothScreen = ({
             style={{
               backgroundColor: 'red',
               padding: 10,
-              borderRadius: 5,
+              borderRadius: 10,
               marginBottom: 5,
             }}>
             <Text>Disconnect from {connectedDevice.advertising.localName}</Text>
@@ -168,7 +168,7 @@ const BluetoothScreen = ({
               style={{
                 backgroundColor: 'green',
                 padding: 10,
-                borderRadius: 5,
+                borderRadius: 10,
                 marginBottom: 5,
               }}>
               <Text style={{color: 'white'}}>

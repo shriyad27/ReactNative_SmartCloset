@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontFamily: 'serif',
+    color: '#F2E9E4',
+    padding: 5,
   },
 });
 

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#F2E9E4',
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 5,
     fontSize: 16,
     fontFamily: 'serif',

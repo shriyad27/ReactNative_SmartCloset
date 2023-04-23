@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 150,
+    borderRadius: 10,
+    borderColor: '#F2E9E4',
+    borderWidth: 5,
   },
 });
 

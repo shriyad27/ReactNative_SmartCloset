@@ -30,7 +30,6 @@ const SelectEventScreen = ({navigation}) => {
   const EventData = [
     // Add your clothing data here with attributes
     // Example: { id: 1, name: 'T-Shirt', image: 'https://example.com/tshirt.jpg', ... },
-
     {
       id: 1,
       name: 'Formal',
@@ -60,7 +59,7 @@ const SelectEventScreen = ({navigation}) => {
   // make the button show up at the bottom of the screen
   return (
     <SafeAreaView>
-      <View>
+      <View style={styles.container}>
         <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
         <TouchableOpacity onPress={API}>
           <Text>Click me</Text>
@@ -79,8 +78,8 @@ const SelectEventScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
     //     height: 100,
     backgroundColor: '#22223B',
   },

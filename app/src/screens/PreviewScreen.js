@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     fontFamily: 'serif',
     color: '#F2E9E4',
     fontSize: 15,
-    paddingTop: 10,
+    paddingTop: 15,
     paddingBottom: 10,
   },
   textinput: {

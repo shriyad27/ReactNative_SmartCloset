@@ -42,7 +42,7 @@ const CameraScreen = ({navigation}) => {
           isActive={true}
           photo={true}></Camera>
       )}
-      <View style={{backgroundColor: 'black'}}>
+      <View style={{backgroundColor: '#22223B'}}>
         <TouchableOpacity
           onPress={takePicture}
           style={styles.captureButton}></TouchableOpacity>
@@ -57,8 +57,10 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: 'center',
     borderRadius: 40,
-    backgroundColor: 'white',
-    borderColor: 'rgba(0, 0, 0, 0.2)',
+    //backgroundColor: 'white',
+    backgroundColor: '#F2E9E4',
+    borderColor: '#4A4E69',
+    //borderColor: 'rgba(0, 0, 0, 0.2)',
     borderWidth: 2,
   },
   container: {
