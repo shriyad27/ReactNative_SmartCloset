@@ -4,24 +4,28 @@ import BleManager from 'react-native-ble-manager';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const serviceUUID = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
+const characteristicUUID = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
+
 const ClothingDetailsScreen = ({route}) => {
+  const [found, setFound] = React.useState(false);
   const navigation = useNavigation();
-  const writeCharacteristic = async (
-    peripheralId,
-    serviceUUID,
-    characteristicUUID,
-    value,
-  ) => {
+
+  const writeCharacteristic = async (peripheralId, value) => {
+    let hanger = 49;
+    if (found) {
+      hanger = 48;
+    } else if (item.hanger) {
+      hanger = parseInt(item.hanger);
+    }
     try {
+      console.log(peripheralId);
       const integer = value;
       const integerBytes = new Int8Array([integer]);
-      await BleManager.write(
-        peripheralId,
-        serviceUUID,
-        characteristicUUID,
-        integerBytes.buffer,
-      );
-      console.log('Wrote integer:', integer);
+      await BleManager.write(peripheralId, serviceUUID, characteristicUUID, [
+        hanger,
+      ]);
+      setFound(!found);
     } catch (error) {
       console.error('Error writing characteristic:', error);
     }
@@ -37,7 +41,8 @@ const ClothingDetailsScreen = ({route}) => {
     }
   };
 
-  const {item, PID, SERVICE_UUID, CHARACTERISTIC_UUID} = route.params;
+  const {item, PID} = route.params;
+  console.log('HI ' + PID);
   return (
     <View style={styles.container}>
       <Image source={{uri: `file://${item.image}`}} style={styles.image} />
@@ -45,14 +50,7 @@ const ClothingDetailsScreen = ({route}) => {
       {/* Render other attributes here, e.g. <Text style={styles.attribute}>Size: {item.size}</Text> */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() =>
-          writeCharacteristic(
-            PID,
-            SERVICE_UUID,
-            CHARACTERISTIC_UUID,
-            item.hanger,
-          )
-        }>
+        onPress={() => writeCharacteristic(PID, item.hanger)}>
         <Text style={styles.buttonText}>Find</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.deleteButton} onPress={deleteItem}>

@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 import AddItemButton from '../components/AddItemButton';
 import AddItemScreen from '../screens/AddItemScreen';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import LoadingScreen from './LoadingScreen';
 const SelectEventScreen = ({navigation}) => {
   const handlePress = () => {
     navigation.navigate('SelectEventScreen');
@@ -25,8 +25,8 @@ const SelectEventScreen = ({navigation}) => {
     }).then(r => console.log(r.json()));
   };
 
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
   const EventData = [
     // Add your clothing data here with attributes
     // Example: { id: 1, name: 'T-Shirt', image: 'https://example.com/tshirt.jpg', ... },
@@ -57,12 +57,15 @@ const SelectEventScreen = ({navigation}) => {
   );
 
   // make the button show up at the bottom of the screen
-  return (
+  return loading ? (
+    <LoadingScreen />
+  ) : (
     <SafeAreaView style={styles.container}>
       <View style={styles.subContainer}>
         <EventList
           data={filteredData}
-          onItemPress={item => navigation.navigate('EventDetails', {item})}
+          setLoading={setLoading}
+          //onItemPress={item => navigation.navigate('EventDetails', {item})}
         />
         {/* <View style={styles.buttonContainer}>
           <AddItemButton title="Go to add item page" onPress={handlePress} navigation={navigation}/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 async function getData() {
   try {
     const keys = await AsyncStorage.getAllKeys();
@@ -23,25 +24,36 @@ async function getData() {
   }
 }
 
-const API = async name => {
+const API = async (name, setLoading, navigation) => {
   const formData = new FormData();
   const data = await getData();
-  console.log(data);
   formData.append('user_data', name);
   formData.append('clothes', data);
-
+  setLoading(true);
   const response = await fetch('http://127.0.0.1:5000/api', {
     method: 'POST',
     body: formData,
     header: {
       'Content-type': 'application/json',
     },
-  }).then(r => console.log(r.json()));
+  });
+  const json = await response.json().then(r => {
+    //separate the response strings into an array based on commas, and remove all spaces
+    let responses = r.response.split(',');
+    for (let i = 0; i < responses.length; i++) {
+      responses[i] = responses[i].replace(/\s/g, '');
+    }
+    setLoading(false);
+    console.log('test ' + responses);
+    navigation.navigate('EventScreen', {items: responses, name: name});
+  });
 };
-
-const EventItem = ({imageSrc, name}) => {
+const EventItem = ({imageSrc, name, setLoading}) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => API(name)} style={styles.container}>
+    <TouchableOpacity
+      onPress={() => API(name, setLoading, navigation)}
+      style={styles.container}>
       <Image source={imageSrc} style={styles.image} />
     </TouchableOpacity>
   );

@@ -6,14 +6,14 @@ import RNFS from 'react-native-fs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
-async function saveImage(imageData, name, navigation) {
+async function saveImage(imageData, name, navigation, hanger) {
   try {
     const date = Date.now();
     const fileName = `image-${date}.jpg`;
     const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
     await RNFS.moveFile('file://' + imageData.path, path);
 
-    const clothes = {name: name, image: path, id: date};
+    const clothes = {name: name, image: path, id: date, hanger: hanger};
     const clothesString = JSON.stringify(clothes);
     await AsyncStorage.setItem(fileName, clothesString);
 
@@ -29,7 +29,7 @@ const PreviewScreen = ({route}) => {
   const {imageData} = route.params;
 
   const [name, setName] = React.useState('');
-
+  const [hanger, setHanger] = React.useState(49);
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{uri: 'file://' + imageData.path}} />
@@ -42,10 +42,20 @@ const PreviewScreen = ({route}) => {
           placeholder="e.g. Blue T-shirt"
         />
       </View>
+      <View style={{width: '50%', alignItems: 'center'}}>
+        <Text style={styles.intro}>Hanger:</Text>
+        <TextInput
+          style={styles.textinput}
+          onChangeText={text => setHanger(text)}
+          keyboardType="numeric"
+          value={hanger.toString()}
+          placeholder={'49'}
+        />
+      </View>
       <View style={{width: '100%', alignItems: 'center'}}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => saveImage(imageData, name, navigation)}>
+          onPress={() => saveImage(imageData, name, navigation, hanger)}>
           <Text style={styles.saveButton}>Save</Text>
         </TouchableOpacity>
       </View>
@@ -93,7 +103,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: '#4A4E69',
     color: '#F2E9E4',
     width: 100,

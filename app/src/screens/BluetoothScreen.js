@@ -83,12 +83,17 @@ const BluetoothScreen = ({
         console.log('Connected to ' + device.name);
         setConnectedDevice(device);
         console.log(device);
+        console.log(device.id);
         setPID(device.id);
         setConnected(true);
       })
       .catch(error => {
         console.log('Connection error', error);
       });
+  };
+
+  const skipConnect = () => {
+    setConnected(true);
   };
 
   const disconnectFromDevice = () => {
@@ -122,62 +127,46 @@ const BluetoothScreen = ({
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      {connectedDevice ? (
-        <>
+      <>
+        <TouchableOpacity
+          onPress={startScan}
+          style={{
+            backgroundColor: 'blue',
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 20,
+          }}>
+          <Text style={{color: 'white'}}>
+            {isScanning ? 'Scanning...' : 'Scan for ESP32 Devices'}
+          </Text>
+        </TouchableOpacity>
+        {devices.map(device => (
           <TouchableOpacity
-            onPress={() =>
-              readCharacteristic(PID, SERVICE_UUID, CHARACTERISTIC_UUID)
-            }
+            key={device.id}
+            onPress={() => connectToDevice(device)}
             style={{
-              backgroundColor: 'blue',
+              backgroundColor: 'green',
               padding: 10,
               borderRadius: 10,
               marginBottom: 5,
-            }}>
-            <Text>Read device</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={disconnectFromDevice}
-            style={{
-              backgroundColor: 'red',
-              padding: 10,
-              borderRadius: 10,
-              marginBottom: 5,
-            }}>
-            <Text>Disconnect from {connectedDevice.advertising.localName}</Text>
-          </TouchableOpacity>
-        </>
-      ) : (
-        <>
-          <TouchableOpacity
-            onPress={startScan}
-            style={{
-              backgroundColor: 'blue',
-              padding: 20,
-              borderRadius: 10,
-              marginBottom: 20,
             }}>
             <Text style={{color: 'white'}}>
-              {isScanning ? 'Scanning...' : 'Scan for ESP32 Devices'}
+              {device.advertising.localName || device.id}
             </Text>
           </TouchableOpacity>
-          {devices.map(device => (
-            <TouchableOpacity
-              key={device.id}
-              onPress={() => connectToDevice(device)}
-              style={{
-                backgroundColor: 'green',
-                padding: 10,
-                borderRadius: 10,
-                marginBottom: 5,
-              }}>
-              <Text style={{color: 'white'}}>
-                {device.advertising.localName || device.id}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </>
-      )}
+        ))}
+      </>
+      <TouchableOpacity
+        style={{
+          //pastel red
+          backgroundColor: '#FF6961',
+          padding: 10,
+          borderRadius: 10,
+          marginBottom: 5,
+        }}
+        onPress={skipConnect}>
+        <Text style={{color: 'white'}}>Skip</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -8,14 +8,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //use useFocus to refresh the page
 import {useFocusEffect} from '@react-navigation/native';
 
-async function getData(setData) {
+async function getData(setData, items) {
   try {
     const keys = await AsyncStorage.getAllKeys();
     let data = [];
     for (let i = 0; i < keys.length; i++) {
       if (keys[i] !== 'Welcome') {
         const value = await AsyncStorage.getItem(keys[i]);
-        data.push(JSON.parse(value));
+        let item = JSON.parse(value);
+        if (items.includes(item.id.toString())) {
+          data.push(JSON.parse(value));
+        }
       }
     }
     setData(data);
@@ -24,10 +27,11 @@ async function getData(setData) {
   }
 }
 
-const HomeScreen = ({navigation}) => {
+const EventScreen = ({navigation, route}) => {
+  const {items, name} = route.params;
   useFocusEffect(
     React.useCallback(() => {
-      getData(setData);
+      getData(setData, items);
     }, []),
   );
 
@@ -42,7 +46,18 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <SearchBar value={searchTerm} onChangeText={setSearchTerm} />
+        <Text
+          style={{
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: '#F2E9E4',
+            alignSelf: 'center',
+            marginTop: 20,
+            marginBottom: 10,
+          }}>
+          {name}
+          {' Outfit'}
+        </Text>
         <ClothingList
           data={filteredData}
           onItemPress={item => navigation.navigate('ClothingDetails', {item})}
@@ -87,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default EventScreen;

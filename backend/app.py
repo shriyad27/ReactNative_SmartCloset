@@ -1,6 +1,6 @@
 #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
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "#api key here"
 import openai
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -13,15 +13,20 @@ api = Api(app)
 @app.route('/api', methods=['POST'])
 
 def api():
-    user_data = request.form.get('user_data')
-    data = '1 Jacket, 2 Pants, 3 Sweaters, 4 Shorts, 5 Hoodies, 6 Suit, 7 T-Shirts: ' + user_data #request.get_json()["prompt"]
-    prompt = "Given the following clothing items and their respective number, return the numbers of the clothing items that best fit the given characteristics: " + data 
+    situation = request.form.get('user_data')
+    clothing_items = request.form.get('clothes')
+
+    #prompt = "Given the following clothing items and their respective number, return the numbers of the clothing items that best fit the given characteristics: " + data 
+    prompt = "Given the following clothing items in {name: name, id: id} format, return the ids of the clothing items in an outfit that would best fit the given situation in the format of [id1, id2, ...]. Output nothing other than these ids: \n Clothes:" + clothing_items + "\n Situation: " + situation
+    
+    
     #response = prompt
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {"role": "system", "content": prompt},
         ]
     )
     print(response["choices"])
+    print(jsonify({"response": response["choices"][0]["message"]["content"]}))
     return jsonify({"response": response["choices"][0]["message"]["content"]})

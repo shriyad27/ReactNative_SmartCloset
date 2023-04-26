@@ -12,6 +12,7 @@ import BluetoothScreen from './src/screens/BluetoothScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingScreen from './src/screens/LoadingScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import EventScreen from './src/screens/EventScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,6 +33,7 @@ const App = () => {
     }
     //Check if there is already a previously connected device
     if (AsyncStorage.getItem('PID') !== null) {
+      //this will be used to remember and connect
     }
     setSetUp(true);
   };
@@ -45,7 +47,7 @@ const App = () => {
   if (!initated) {
     return <WelcomeScreen setInitiated={setInitiated} />;
   }
-  /*if (!connected) {
+  if (!connected) {
     return (
       <BluetoothScreen
         connected={connected}
@@ -56,7 +58,7 @@ const App = () => {
         setSERVICE_UUID={setSERVICE_UUID}
       />
     );
-  }*/
+  }
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -99,10 +101,8 @@ const App = () => {
               />
               <Stack.Screen
                 name="ClothingDetails"
-                PID={PID}
-                SERVICE_UUID={SERVICE_UUID}
-                CHARACTERISTIC_UUID={CHARACTERISTIC_UUID}
                 component={ClothingDetailsScreen}
+                initialParams={{PID: PID}}
                 options={{title: 'Item Details', headerShown: false}}
               />
             </Stack.Navigator>
@@ -146,6 +146,11 @@ const App = () => {
                 name="Preview"
                 component={PreviewScreen}
                 options={{title: 'Preview', headerShown: false}}
+              />
+              <Stack.Screen
+                name="EventScreen"
+                component={EventScreen}
+                options={{title: 'Event', headerShown: false}}
               />
             </Stack.Navigator>
           )}

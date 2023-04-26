@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, View, StyleSheet, Text} from 'react-native';
 import EventItem from './EventItem';
 
-const EventList = ({data, onItemPress}) => {
+const EventList = ({data, onItemPress, setLoading}) => {
   return (
     <FlatList
       data={data}
@@ -12,6 +12,7 @@ const EventList = ({data, onItemPress}) => {
           <EventItem
             imageSrc={item.image}
             name={item.name}
+            setLoading={setLoading}
             onPress={() => onItemPress(item)}
           />
         </View>
